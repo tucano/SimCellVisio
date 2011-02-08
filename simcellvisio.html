@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>simCellVisio</title>
+	
+	<!-- Flash embedding utility (needed to embed Cytoscape Web) -->
+	<script type="text/javascript" src="js/AC_OETags.min.js"></script>
+	<!-- JSON support for IE (needed to use JS API) -->
+    <script type="text/javascript" src="js/json2.min.js"></script>
+    <!-- Cytoscape Web JS API (needed to reference org.cytoscapeweb.Visualization) -->
+    <script type="text/javascript" src="js/cytoscapeweb.min.js"></script>
+    <!-- jquery -->
+    <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.4.custom.min.js"></script>
+	<!-- my JS -->
+    <script type="text/javascript" src="js/simCellVisio.js"></script>
+    <!-- STYLEs -->
+    <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.4.custom.css" rel="Stylesheet" />	
+    <link rel="stylesheet" type="text/css" href="css/simcell.css" />
+    
+</head>
+
+<body>
+	<div id="header">
+		<h1><a href="/~drambald/simcellvisio/">SimCellViso</a></h1>
+	</div>
+	<div id="content">
+		<div id="cytoscapeweb">
+			Cytoscape Web will replace the contents of this div with your graph.
+		</div>
+		<div id="ctrlbar">
+			<table>
+			<tr>
+				<td><div id="slider_value"><label>set time: </label><input type="text" id="time" size=5/></div></td>
+				<td><div id="slider"></div></td>
+				<td><div id="filterdiv"><button id="filter">Filter</button></div></td>
+				<td><div id="mammodiv"><button id="mammosphere">mammosphere</button></div></td>
+				<td><div id="mammodiv"><button id="history">proliferation history</button></div></td>
+			</tr>
+			</table>
+		</div>
+		<div id="note">
+			<p>Data Display</p>
+		</div>
+	</div>
+	<div id="footer">
+		<a href="http://cytoscapeweb.cytoscape.org/">
+    		<img src="http://cytoscapeweb.cytoscape.org/img/logos/cw_s.png" alt="Cytoscape Web"/>
+		</a>
+		by Davide Rambaldi
+	</div>
+</body>
+
+</html>
