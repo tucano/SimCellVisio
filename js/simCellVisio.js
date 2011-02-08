@@ -1,6 +1,7 @@
 window.onload=function() {
 	// id of Cytoscape Web container div
-    var div_id = "proliferation";
+    var div_proliferation = "proliferation";
+	var div_mammosphere = "mammosphere";
 	
 	// network data grabbed via ajax
 	var xml = $.ajax({
@@ -67,7 +68,7 @@ window.onload=function() {
 		}
 	};
 	
-	var draw_options = {
+	var draw_options_proliferation = {
 		// your data goes here
 		network: xml,
 		
@@ -82,19 +83,40 @@ window.onload=function() {
 		
 		// hide/show pan zoom
 		panZoomControlVisible: true 
-	};	
+	};
+	
+	var draw_options_mammosphere = {
+		// your data goes here
+		network: xml,
+		
+		// set the style at initialisation
+		visualStyle: visual_style,
+		
+		// let's try another layout
+		layout: "Circle"
+	}
 	
 	// init 
-	var vis = new org.cytoscapeweb.Visualization(div_id, options);
+	var vis_proliferation = new org.cytoscapeweb.Visualization(div_proliferation, options);
+	var vis_mammosphere = new org.cytoscapeweb.Visualization(div_mammosphere, options);
 	
 	// callback when Cytoscape Web has finished drawing
-	vis.ready(function() {
-	
+	vis_proliferation.ready(function() {
+		
+		// INIT time point
+		vis_proliferation.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
+		vis_proliferation.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
+		vis_proliferation.layout('Tree');	
+		vis_mammosphere.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
+		vis_mammosphere.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
+		vis_mammosphere.layout('Circle');
+
+		
 		// add a listener for when nodes and edges are clicked
-		vis.addListener("click", "nodes", function(event) {
+		vis_proliferation.addListener("click", "nodes", function(event) {
 			handle_click(event);
 		})
-		.addListener("click", "edges", function(event) {
+		vis_proliferation.addListener("click", "edges", function(event) {
 			handle_click(event);
 		});
 		
@@ -120,39 +142,45 @@ window.onload=function() {
 		}
 		
 		// TEST CONTEXT MENU
-		vis.addContextMenuItem("Select first neighbors", "nodes", 
+		vis_proliferation.addContextMenuItem("Select first neighbors", "nodes", 
         	function (evt) {
 				// Get the right-clicked node:
 				var rootNode = evt.target;
 			
 				// Get the first neighbors of that node:
-				var fNeighbors = vis.firstNeighbors([rootNode]);
+				var fNeighbors = vis_proliferation.firstNeighbors([rootNode]);
 				var neighborNodes = fNeighbors.neighbors;
 			
 				// Select the root node and its neighbors:
-				vis.select([rootNode]).select(neighborNodes);
+				vis_proliferation.select([rootNode]).select(neighborNodes);
         	}
     	);
-	
+
+
 
 		// Filtering button
 		document.getElementById("filter").onclick = function(){
-			vis.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
-			vis.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
-			vis.layout('Tree');
+			vis_proliferation.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
+			vis_proliferation.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
+			vis_proliferation.layout('Tree');
+			vis_mammosphere.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
+			vis_mammosphere.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
+			vis_mammosphere.layout('Circle');
 		};
     	
 	});
 	
+	vis_mammosphere.ready(function(){ });
+	
 	// and draw
-	vis.draw(draw_options);
-
+	vis_proliferation.draw(draw_options_proliferation);
+	vis_mammosphere.draw(draw_options_mammosphere);
 };
 
 // JQUERY
 $(document).ready(function() {
 	$("#slider").slider({
-		value: 15, 
+		value: 1, 
 		max: 20,
 		min: 0,
 		step: 0.1,
