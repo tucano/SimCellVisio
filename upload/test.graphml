@@ -31,42 +31,4 @@
     	<data key="k6">1</data>
     </edge>
   </graph>
-  
-  <graph id="pippo" edgedefault="directed">
-    <node id="n0">
-      <data key="k0">0</data>
-      <data key="k1">1</data>
-      <data key="k2">1</data>
-      <data key="k3">0</data>
-      <data key="k4">8</data>
-      <data key="k5">0</data>
-      <data key="k6">0</data>
-    </node>
-    <edge id="e1" source="n0" target="n1">
-      <data key="k3">0.952834</data>
-      <data key="k6">0</data>      
-    </edge>
-    <node id="n1">
-      <data key="k0">1</data>
-      <data key="k1">1</data>
-      <data key="k2">0.520314</data>
-      <data key="k3">1.84499</data>
-      <data key="k4">8</data>
-      <data key="k5">0</data>
-      <data key="k6">0</data>      
-    </node>
-    <edge id="e1" source="n0" target="n2">
-      <data key="k3">0.952834</data>
-      <data key="k6">0</data>
-    </edge>
-    <node id="n2">
-      <data key="k0">2</data>
-      <data key="k1"></data>
-      <data key="k2">0.479686</data>
-      <data key="k3">0.952834</data>
-      <data key="k4">8</data>
-      <data key="k5">0</data>
-      <data key="k6">0</data>      
-    </node>
-  </graph>
 </graphml>

@@ -156,7 +156,16 @@ window.onload=function() {
         	}
     	);
 
-
+		vis_proliferation.addContextMenuItem("Select childs", "nodes",
+			function(evt) {
+				// Get the right-clicked node:
+				var rootNode = evt.target;
+				
+				// Get the childs of that node:
+				var fChilds = vis_proliferation.childDegree([rootNode]);
+				print("lol");
+			}
+		);
 
 		// Filtering button
 		document.getElementById("filter").onclick = function(){
