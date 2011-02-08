@@ -40,14 +40,14 @@ body
 #content
 {
 	position: relative;
-	width:1300px;
+	width:1500px;
 	height: 800px;
 }
 
 /* The Cytoscape Web container must have its dimensions set. */
 #proliferation
 {
-	width: 700px;
+	width: 850px;
 	height: 700px;
 	border: 1px black solid;
 	float: left;
@@ -57,7 +57,7 @@ body
 /* The Cytoscape Web container must have its dimensions set. */
 #mammosphere
 {
-	width: 300px;
+	width: 350px;
 	height: 700px;
 	border: 1px black solid;
 	float: left;
@@ -78,10 +78,17 @@ body
 
 #ctrlbar
 {
-	width: 1212px;
+	width: 1412px;
 	height: 80px;
 	border: 1px black solid;
 	clear: both;
+	margin: 2px;
+	background-color: #f0f0f0;
+}
+
+#ctrlpanel
+{
+	border: 1px solid black;
 	margin: 2px;
 }
 
