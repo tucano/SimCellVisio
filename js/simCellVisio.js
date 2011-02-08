@@ -1,6 +1,6 @@
 window.onload=function() {
 	// id of Cytoscape Web container div
-    var div_id = "cytoscapeweb";
+    var div_id = "proliferation";
 	
 	// network data grabbed via ajax
 	var xml = $.ajax({
