@@ -134,20 +134,7 @@ window.onload=function() {
         	}
     	);
 	
-		// Show mammosphere
-		document.getElementById("mammosphere").onclick = function(){
-			vis.filter("edges", function(edge) { return edge.data.mammosphere >= 1; }, false )
-			vis.filter("nodes", function(node) { return node.data.mammosphere >= 1; }, false )
-			vis.layout('Circle');
-		}
 
-		// Filtering mammosphere
-		document.getElementById("history").onclick = function(){
-			vis.filter("edges", function(edge) { return edge.data.mammosphere == 0; }, false )
-			vis.filter("nodes", function(node) { return node.data.mammosphere == 0; }, false )
-			vis.layout('Tree');
-		}
-		
 		// Filtering button
 		document.getElementById("filter").onclick = function(){
 			vis.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
