@@ -6,8 +6,7 @@
   <key id="k3" for="all" attr.name="time" attr.type="double" />
   <key id="k4" for="node" attr.name="divisions" attr.type="int" />
   <key id="k5" for="node" attr.name="mothertime" attr.type="double" />
-  <key id="k6" for="all" attr.name="mammosphere" attr.type="int" />
-  
+
   <graph id="pluto" edgedefault="undirected">
   	<node id="nx0">
   	  <data key="k0">0</data>
@@ -16,7 +15,6 @@
       <data key="k3">0</data>
       <data key="k4">8</data>
       <data key="k5">0</data>
-      <data key="k6">1</data>
     </node>
   	<node id="nx1">
   	  <data key="k0">0</data>
@@ -25,10 +23,8 @@
       <data key="k3">0</data>
       <data key="k4">8</data>
       <data key="k5">0</data>
-      <data key="k6">1</data>
     </node>
-    <edge id="ex1" source="nx0" target="nx1">
-    	<data key="k6">1</data>
-    </edge>
+    <edge id="ex1" source="nx0" target="nx1" />
+    <edge id="ex2" source="nx0" target="nx1" />    
   </graph>
 </graphml>

@@ -107,10 +107,6 @@ window.onload=function() {
 		vis_proliferation.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
 		vis_proliferation.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
 		vis_proliferation.layout('Tree');	
-		vis_mammosphere.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
-		vis_mammosphere.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
-		vis_mammosphere.layout('Circle');
-
 		
 		// add a listener for when nodes and edges are clicked
 		vis_proliferation.addListener("click", "nodes", function(event) {
@@ -167,19 +163,24 @@ window.onload=function() {
 			}
 		);
 
-		// Filtering button
-		document.getElementById("filter").onclick = function(){
-			vis_proliferation.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
-			vis_proliferation.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
-			vis_proliferation.layout('Tree');
-			vis_mammosphere.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
-			vis_mammosphere.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
-			vis_mammosphere.layout('Circle');
-		};
     	
 	});
 	
-	vis_mammosphere.ready(function(){ });
+	vis_mammosphere.ready(function(){ 
+		vis_mammosphere.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
+		vis_mammosphere.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
+		vis_mammosphere.layout('Circle');
+	});
+		
+	// Filtering button
+	document.getElementById("filter").onclick = function(){
+		vis_proliferation.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
+		vis_proliferation.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
+		vis_proliferation.layout('Tree');
+		vis_mammosphere.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
+		vis_mammosphere.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
+		vis_mammosphere.layout('Circle');
+	};
 	
 	// and draw
 	vis_proliferation.draw(draw_options_proliferation);
