@@ -41,7 +41,7 @@ body
 {
 	position: relative;
 	width:1500px;
-	height: 800px;
+	height: 100%;
 }
 
 /* The Cytoscape Web container must have its dimensions set. */
@@ -68,25 +68,26 @@ body
 #note
 {
 	width:200px;
-	height: 700px;
+	height: 680px;
 	background-color: #f0f0f0;
 	float: left;
 	margin: 2px;
+	padding: 10px;
 	border: 1px black solid;
 }
 
 
 #ctrlbar
 {
-	width: 1412px;
-	height: 80px;
+	width: 1432px;
+	height: 120px;
 	border: 1px black solid;
 	clear: both;
 	margin: 2px;
 	background-color: #f0f0f0;
 }
 
-#ctrlpanel
+.ctrlpanel
 {
 	border: 1px solid black;
 	margin: 2px;

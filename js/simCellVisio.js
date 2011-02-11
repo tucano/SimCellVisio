@@ -17,8 +17,8 @@ window.onload=function() {
 		flashInstallerPath: "swf/playerProductInstall"
 	};
 	
-	// visual style we will use
-	var visual_style = {
+	// visual style we will use for proliferation panel
+	var visual_style_proliferation = {
 		
 		global: {
 			backgroundColor: "#E5E5E5"
@@ -68,6 +68,67 @@ window.onload=function() {
 		}
 	};
 	
+	var circle_layout = {
+		name: "Circle",
+		options: { angleWidth: 360, tree: false }
+	}
+	
+	var tree_layout = {
+		name: "Tree",
+		options: { orientation: "topToBottom", depthSpace: 30, breadthSpace: 20, subtreeSpace: 30}
+	}
+	
+	// visual style we will use for proliferation panel
+	var visual_style_mammosphere = {
+		
+		global: {
+			backgroundColor: "#E5E5E5"
+		},
+		
+		nodes: {
+			shape: {
+				discreteMapper: {
+					attrName: "stemness",
+					entries: [
+						{ attrValue: false, value: "OCTAGON" },
+						{ attrValue: true, value: "ELLIPSE" }
+					]
+				}
+			},
+			borderWidth: {
+				discreteMapper: {
+					attrName: "stemness",
+					entries: [
+						{ attrValue: false, value: 1.5 },
+						{ attrValue: true, value: 4.5 }
+					]
+				}
+			},
+			borderColor: {
+				discreteMapper: {
+					attrName: "stemness",
+					entries: [
+						{ attrValue: false, value: "#ffffff" },
+						{ attrValue: true,  value: "#000000"}
+					]
+				}
+			},
+			size: 25,
+			color: {
+				continuousMapper: {
+					attrName: "pkh", minValue: "#FFFFFF", maxValue: "#FF0000"
+				}
+			},
+			labelHorizontalAnchor: "center"
+		},
+		
+		edges: {
+			width: 1,
+			opacity: 0.2,
+			color: "#000000"
+		}
+	};
+	
 	var draw_options_proliferation = {
 		// your data goes here
 		network: xml,
@@ -76,10 +137,10 @@ window.onload=function() {
 		edgeLabelsVisible: true,
 		
 		// let's try another layout
-		layout: "Tree",
+		layout: tree_layout,
 		
 		// set the style at initialisation
-		visualStyle: visual_style,
+		visualStyle: visual_style_proliferation,
 		
 		// hide/show pan zoom
 		panZoomControlVisible: true 
@@ -90,10 +151,16 @@ window.onload=function() {
 		network: xml,
 		
 		// set the style at initialisation
-		visualStyle: visual_style,
+		visualStyle: visual_style_mammosphere,
 		
 		// let's try another layout
-		layout: "Circle"
+		layout: circle_layout,
+		
+		// show edge labels too
+		edgeLabelsVisible: true,
+		
+		// hide/show pan zoom
+		panZoomControlVisible: true 
 	}
 	
 	// init 
@@ -106,7 +173,7 @@ window.onload=function() {
 		// INIT time point
 		vis_proliferation.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
 		vis_proliferation.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
-		vis_proliferation.layout('Tree');	
+		vis_proliferation.layout(tree_layout);	
 		
 		// add a listener for when nodes and edges are clicked
 		vis_proliferation.addListener("click", "nodes", function(event) {
@@ -115,27 +182,6 @@ window.onload=function() {
 		vis_proliferation.addListener("click", "edges", function(event) {
 			handle_click(event);
 		});
-		
-		// WHEN I CLICK A NODE or EDGE...
-		function handle_click(event) {
-			 var target = event.target;     
-			 clear();
-			 print(event.group);
-			 for (var i in target.data) {
-				var variable_name = i;
-				var variable_value = target.data[i];
-				print( variable_name + " = " + variable_value );
-			 }
-		}
-		
-		// CLEAR and PRINT for NOTES
-		function clear() {
-			document.getElementById("note").innerHTML = "";
-		}
-		
-		function print(msg) {
-			document.getElementById("note").innerHTML += "<p>" + msg + "</p>";
-		}
 		
 		// TEST CONTEXT MENU
 		vis_proliferation.addContextMenuItem("Select first neighbors", "nodes", 
@@ -151,35 +197,41 @@ window.onload=function() {
 				vis_proliferation.select([rootNode]).select(neighborNodes);
         	}
     	);
-
-		vis_proliferation.addContextMenuItem("Select childs", "nodes",
-			function(evt) {
-				// Get the right-clicked node:
-				var rootNode = evt.target;
-				
-				// Get the childs of that node:
-				var fChilds = vis_proliferation.childDegree([rootNode]);
-				print("lol");
-			}
-		);
-
-    	
 	});
 	
 	vis_mammosphere.ready(function(){ 
+		
+		// INIT time point
 		vis_mammosphere.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
 		vis_mammosphere.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
-		vis_mammosphere.layout('Circle');
+		vis_mammosphere.layout(circle_layout);
+		
+		// add a listener for when nodes and edges are clicked
+		vis_mammosphere.addListener("click", "nodes", function(event) {
+			handle_click(event);
+		})
+		vis_mammosphere.addListener("click", "edges", function(event) {
+			handle_click(event);
+		});
 	});
 		
 	// Filtering button
 	document.getElementById("filter").onclick = function(){
 		vis_proliferation.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
 		vis_proliferation.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
-		vis_proliferation.layout('Tree');
+		vis_proliferation.layout(tree_layout);
 		vis_mammosphere.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
 		vis_mammosphere.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
-		vis_mammosphere.layout('Circle');
+		vis_mammosphere.layout(circle_layout);
+	};
+		
+	// export PDF buttons
+	document.getElementById("prolif2pdf").onclick = function() {
+		vis_proliferation.exportNetwork('pdf', 'export.php?type=pdf');
+	};
+	
+	document.getElementById("mammo2pdf").onclick = function() {
+		vis_mammosphere.exportNetwork('pdf', 'export.php?type=pdf');
 	};
 	
 	// and draw
@@ -190,12 +242,13 @@ window.onload=function() {
 // JQUERY
 $(document).ready(function() {
 	$("#slider").slider({
-		value: 1, 
+		value: 0, 
 		max: 20,
 		min: 0,
 		step: 0.1,
 		change: function (event, ui) { $("#time").val(ui.value); }
 	});
+	
 	$("#time").val($("#slider").slider("value"));
 	
 	$("#time").change( function() {
@@ -221,3 +274,28 @@ $.extend({
 		return $.getUrlVars()[name];
 	}
 });
+
+// CLEAR for NOTES
+function clear() {
+	document.getElementById("note").innerHTML = "";
+}
+
+// PRINT for NOTES
+function print(msg) {
+	document.getElementById("note").innerHTML += msg;
+}
+
+// WHEN I CLICK A NODE or EDGE...
+function handle_click(event) {
+	 var target = event.target;     
+	 clear();
+	 if (target.group == 'nodes') {
+		 print('<table><tr><td>Born at Time</td><td><b>' + target.data.time + 
+			'</b></td></tr><tr><td>PKH ratio</td><td><b>' + target.data.pkh + '</b></td></tr>'+ 
+			'<tr><td>N.Divisions</td><td><b>' + target.data.divisions + '</b></td></tr>' + 
+			'<tr><td>Stem?</td><td><b>' + target.data.stemness + '</b></td></tr>' +
+			'</table>');
+	 } else {
+	 	// show info for edge...TODO
+	 }
+}

@@ -22,35 +22,39 @@
 </head>
 
 <body>
-<div id="container">
-	<div id="header">
-		<h1><a href="/~drambald/SimCellVisio/">SimCellVisio</a></h1>
+	<div id="container">
+		<div id="header">
+			<h1><a href="/~drambald/SimCellVisio/">SimCellVisio</a></h1>
+		</div>
+		<div id="content">
+			<div id="proliferation">
+				Cytoscape Web will replace the contents of this div with your graph.
+			</div>
+			<div id="mammosphere">
+				Cytoscape Web will replace the contents of this div with your graph.
+			</div>
+			<div id="note">
+				<p>Data Display</p>
+			</div>
+			<div id="ctrlbar">
+				<table class="ctrlpanel">
+				<tr>
+					<td><div id="slider_value"><label>set time: </label><input type="text" id="time" size=5/></div></td>
+					<td><div id="slider"></div></td>
+					<td><div id="filterdiv"><button id="filter">Filter</button></div></td>
+				</tr>
+				</table>
+				<table class="ctrlpanel">
+					<tr><td><button id="prolif2pdf">Export proliferative history to PDF</button></td></tr>
+					<tr><td><button id="mammo2pdf">Export current mammosphere to PDF</button></td></tr>
+				</table>
+			</div>
+			
+		</div>
+		<div id="footer">
+			A <a style="color: white;" href="http://cytoscapeweb.cytoscape.org/">cytoscapeweb</a> implementation by Davide Rambaldi
+		</div>
 	</div>
-	<div id="content">
-		<div id="proliferation">
-			Cytoscape Web will replace the contents of this div with your graph.
-		</div>
-		<div id="mammosphere">
-			Cytoscape Web will replace the contents of this div with your graph.
-		</div>
-		<div id="note">
-			<p>Data Display</p>
-		</div>
-		<div id="ctrlbar">
-			<table id="ctrlpanel">
-			<tr>
-				<td><div id="slider_value"><label>set time: </label><input type="text" id="time" size=5/></div></td>
-				<td><div id="slider"></div></td>
-				<td><div id="filterdiv"><button id="filter">Filter</button></div></td>
-			</tr>
-			</table>
-		</div>
-		
-	</div>
-	<div id="footer">
-		A <a style="color: white;" href="http://cytoscapeweb.cytoscape.org/">cytoscapeweb</a> implementation by Davide Rambaldi
-	</div>
-</div>
 </body>
 
 </html>
