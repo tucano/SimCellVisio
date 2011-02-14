@@ -296,6 +296,7 @@ function handle_click(event) {
 			'<tr><td>Stem?</td><td><b>' + target.data.stemness + '</b></td></tr>' +
 			'</table>');
 	 } else {
-	 	// show info for edge...TODO
+	 	// show info for edge...
+	 	print('<table><tr><td>Time of Event</td><td><b>' + target.data.time + '</b></td></tr></table>');
 	 }
 }
