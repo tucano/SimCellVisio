@@ -20,6 +20,11 @@ body
 	font-size: 14px;
 }
 
+button
+{
+	cursor: pointer;
+}
+
 #container
 {
 	width: 100%;
@@ -43,6 +48,43 @@ body
 	width:1500px;
 	height: 100%;
 }
+
+#title1 
+{
+	width: 840px;
+	height: 20px;
+	border: 1px black solid;
+	padding: 5px;
+	margin: 2px;
+	text-align: center;
+	float:left;
+	background-color: #f0f0f0;
+}
+
+#title2
+{
+	width: 340px;
+	height: 20px;
+	border: 1px black solid;
+	padding: 5px;
+	margin: 2px;
+	text-align: center;
+	float:left;
+	background-color: #f0f0f0;
+}
+
+#title3
+{
+	width: 210px;
+	height: 20px;
+	border: 1px black solid;
+	padding: 5px;
+	margin: 2px;
+	text-align: center;
+	float:left;
+	background-color: #f0f0f0;
+}
+
 
 /* The Cytoscape Web container must have its dimensions set. */
 #proliferation
@@ -91,6 +133,7 @@ body
 {
 	border: 1px solid black;
 	margin: 2px;
+	float: left;
 }
 
 #footer

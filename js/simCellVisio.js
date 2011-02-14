@@ -1,3 +1,4 @@
+// WINDOW LOADED....
 window.onload=function() {
 	// id of Cytoscape Web container div
     var div_proliferation = "proliferation";
@@ -14,7 +15,10 @@ window.onload=function() {
 		// where you have the Cytoscape Web SWF
 		swfPath: "swf/CytoscapeWeb",
 		// where you have the Flash installer SWF
-		flashInstallerPath: "swf/playerProductInstall"
+		flashInstallerPath: "swf/playerProductInstall",
+		// The text message that should be displayed if the browser does not have the Flash Player plugin.
+		flashAlternateContent: "This software require the Flash plugin",
+		
 	};
 	
 	// visual style we will use for proliferation panel

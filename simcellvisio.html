@@ -16,26 +16,27 @@
 	<!-- my JS -->
     <script type="text/javascript" src="js/simCellVisio.js"></script>
     <!-- STYLEs -->
-    <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.4.custom.css" rel="Stylesheet" />	
+    <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.4.custom.css" rel="Stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/simcell.css" />
-    
 </head>
 
 <body>
 	<div id="container">
+	
 		<div id="header">
 			<h1><a href="/~drambald/SimCellVisio/">SimCellVisio</a></h1>
 		</div>
 		<div id="content">
+			<div id="title1"><h3>Proliferation History</h3></div>
+			<div id="title2"><h3>Current mammosphere</h3></div>
+			<div id="title3"><h3>Info Panel</h3></div>
 			<div id="proliferation">
 				Cytoscape Web will replace the contents of this div with your graph.
 			</div>
 			<div id="mammosphere">
 				Cytoscape Web will replace the contents of this div with your graph.
 			</div>
-			<div id="note">
-				<p>Data Display</p>
-			</div>
+			<div id="note"></div>
 			<div id="ctrlbar">
 				<table class="ctrlpanel">
 				<tr>
@@ -45,9 +46,11 @@
 				</tr>
 				</table>
 				<table class="ctrlpanel">
-					<tr><td><button id="prolif2pdf">Export proliferative history to PDF</button></td></tr>
-					<tr><td><button id="mammo2pdf">Export current mammosphere to PDF</button></td></tr>
+					<tr><td><button id="prolif2pdf"><img src="img/pdficon.png"/></button></td><td>Export current proliferative history image</td></tr>					
 				</table>
+				<table class="ctrlpanel">				
+					<tr><td><button id="mammo2pdf"><img src="img/pdficon.png"/></button></td><td>Export current mammosphere to PDF</td></tr>
+				</table>					
 			</div>
 			
 		</div>
