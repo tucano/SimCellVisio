@@ -6,7 +6,7 @@ window.onload=function() {
 	
 	// network data grabbed via ajax
 	var xml = $.ajax({
-		url: 'upload/' + $.getUrlVar('network_file'),
+		url: 'data/' + $.getUrlVar('network_file'),
 		async: false,
 	}).responseText;
 	
