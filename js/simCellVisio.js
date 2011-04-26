@@ -2,7 +2,7 @@
 window.onload=function() {
 	// id of Cytoscape Web container div
     var div_proliferation = "proliferation";
-	var div_mammosphere = "mammosphere";
+	//var div_mammosphere = "mammosphere";
 	
 	// network data grabbed via ajax
 	var xml = $.ajax({
@@ -82,6 +82,7 @@ window.onload=function() {
 		options: { orientation: "topToBottom", depthSpace: 30, breadthSpace: 20, subtreeSpace: 30}
 	}
 	
+	/*
 	// visual style we will use for proliferation panel
 	var visual_style_mammosphere = {
 		
@@ -132,6 +133,7 @@ window.onload=function() {
 			color: "#000000"
 		}
 	};
+	*/
 	
 	var draw_options_proliferation = {
 		// your data goes here
@@ -150,6 +152,7 @@ window.onload=function() {
 		panZoomControlVisible: true 
 	};
 	
+	/*
 	var draw_options_mammosphere = {
 		// your data goes here
 		network: xml,
@@ -167,9 +170,11 @@ window.onload=function() {
 		panZoomControlVisible: true 
 	}
 	
+	*/
+	
 	// init 
 	var vis_proliferation = new org.cytoscapeweb.Visualization(div_proliferation, options);
-	var vis_mammosphere = new org.cytoscapeweb.Visualization(div_mammosphere, options);
+	//var vis_mammosphere = new org.cytoscapeweb.Visualization(div_mammosphere, options);
 	
 	// callback when Cytoscape Web has finished drawing
 	vis_proliferation.ready(function() {
@@ -203,6 +208,7 @@ window.onload=function() {
     	);
 	});
 	
+	/*
 	vis_mammosphere.ready(function(){ 
 		
 		// INIT time point
@@ -218,15 +224,16 @@ window.onload=function() {
 			handle_click(event);
 		});
 	});
-		
+	*/
+	
 	// Filtering button
 	document.getElementById("filter").onclick = function(){
 		vis_proliferation.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
 		vis_proliferation.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
 		vis_proliferation.layout(tree_layout);
-		vis_mammosphere.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
-		vis_mammosphere.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
-		vis_mammosphere.layout(circle_layout);
+	//	vis_mammosphere.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
+	//	vis_mammosphere.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
+	//	vis_mammosphere.layout(circle_layout);
 	};
 		
 	// export PDF buttons
@@ -234,13 +241,15 @@ window.onload=function() {
 		vis_proliferation.exportNetwork('pdf', 'export.php?type=pdf');
 	};
 	
+	/*
 	document.getElementById("mammo2pdf").onclick = function() {
 		vis_mammosphere.exportNetwork('pdf', 'export.php?type=pdf');
 	};
+	*/
 	
 	// and draw
 	vis_proliferation.draw(draw_options_proliferation);
-	vis_mammosphere.draw(draw_options_mammosphere);
+	//vis_mammosphere.draw(draw_options_mammosphere);
 };
 
 // JQUERY
