@@ -13,8 +13,6 @@ unless ($ARGV[0]) {
 
 my $q = new CGI;
 
-print $q->header();
-
 print $q->start_html(
 	-title      => "SimCellVisio",
 	-style      => [
@@ -45,7 +43,7 @@ my @files = <$ARGV[0]/*>;
 
 foreach my $file (@files) {
 	my $filename = basename($file);
-	print "<li><a href=\"simcellvisio.html?network_file=$file\">$filename</a></li>\n";
+	print "<li><a href=\"simcellvisio.html?network_file=$filename\">$filename</a></li>\n";
 } 
 
 print "</center></ul>";
