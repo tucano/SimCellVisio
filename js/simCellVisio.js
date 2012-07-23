@@ -17,8 +17,7 @@ window.onload=function() {
 		// where you have the Flash installer SWF
 		flashInstallerPath: "swf/playerProductInstall",
 		// The text message that should be displayed if the browser does not have the Flash Player plugin.
-		flashAlternateContent: "This software require the Flash plugin",
-		
+		flashAlternateContent: "This software require the Flash plugin",	
 	};
 	
 	// visual style we will use for proliferation panel
@@ -33,8 +32,8 @@ window.onload=function() {
 				discreteMapper: {
 					attrName: "stemness",
 					entries: [
-						{ attrValue: false, value: "OCTAGON" },
-						{ attrValue: true, value: "ELLIPSE" }
+						{ attrValue: 0, value: "OCTAGON" },
+						{ attrValue: 1, value: "ELLIPSE" }
 					]
 				}
 			},
@@ -42,8 +41,8 @@ window.onload=function() {
 				discreteMapper: {
 					attrName: "stemness",
 					entries: [
-						{ attrValue: false, value: 1.5 },
-						{ attrValue: true, value: 4.5 }
+						{ attrValue: 0, value: 1.5 },
+						{ attrValue: 1, value: 4.5 }
 					]
 				}
 			},
@@ -51,8 +50,8 @@ window.onload=function() {
 				discreteMapper: {
 					attrName: "stemness",
 					entries: [
-						{ attrValue: false, value: "#ffffff" },
-						{ attrValue: true,  value: "#000000"}
+						{ attrValue: 0, value: "#ffffff" },
+						{ attrValue: 1,  value: "#000000"}
 					]
 				}
 			},
@@ -81,60 +80,7 @@ window.onload=function() {
 		name: "Tree",
 		options: { orientation: "topToBottom", depthSpace: 30, breadthSpace: 20, subtreeSpace: 30}
 	}
-	
-	/*
-	// visual style we will use for proliferation panel
-	var visual_style_mammosphere = {
 		
-		global: {
-			backgroundColor: "#E5E5E5"
-		},
-		
-		nodes: {
-			shape: {
-				discreteMapper: {
-					attrName: "stemness",
-					entries: [
-						{ attrValue: false, value: "OCTAGON" },
-						{ attrValue: true, value: "ELLIPSE" }
-					]
-				}
-			},
-			borderWidth: {
-				discreteMapper: {
-					attrName: "stemness",
-					entries: [
-						{ attrValue: false, value: 1.5 },
-						{ attrValue: true, value: 4.5 }
-					]
-				}
-			},
-			borderColor: {
-				discreteMapper: {
-					attrName: "stemness",
-					entries: [
-						{ attrValue: false, value: "#ffffff" },
-						{ attrValue: true,  value: "#000000"}
-					]
-				}
-			},
-			size: 25,
-			color: {
-				continuousMapper: {
-					attrName: "pkh", minValue: "#FFFFFF", maxValue: "#FF0000"
-				}
-			},
-			labelHorizontalAnchor: "center"
-		},
-		
-		edges: {
-			width: 1,
-			opacity: 0.2,
-			color: "#000000"
-		}
-	};
-	*/
-	
 	var draw_options_proliferation = {
 		// your data goes here
 		network: xml,
@@ -151,26 +97,6 @@ window.onload=function() {
 		// hide/show pan zoom
 		panZoomControlVisible: true 
 	};
-	
-	/*
-	var draw_options_mammosphere = {
-		// your data goes here
-		network: xml,
-		
-		// set the style at initialisation
-		visualStyle: visual_style_mammosphere,
-		
-		// let's try another layout
-		layout: circle_layout,
-		
-		// show edge labels too
-		edgeLabelsVisible: true,
-		
-		// hide/show pan zoom
-		panZoomControlVisible: true 
-	}
-	
-	*/
 	
 	// init 
 	var vis_proliferation = new org.cytoscapeweb.Visualization(div_proliferation, options);
@@ -208,32 +134,11 @@ window.onload=function() {
     	);
 	});
 	
-	/*
-	vis_mammosphere.ready(function(){ 
-		
-		// INIT time point
-		vis_mammosphere.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
-		vis_mammosphere.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
-		vis_mammosphere.layout(circle_layout);
-		
-		// add a listener for when nodes and edges are clicked
-		vis_mammosphere.addListener("click", "nodes", function(event) {
-			handle_click(event);
-		})
-		vis_mammosphere.addListener("click", "edges", function(event) {
-			handle_click(event);
-		});
-	});
-	*/
-	
 	// Filtering button
 	document.getElementById("filter").onclick = function(){
 		vis_proliferation.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
 		vis_proliferation.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
 		vis_proliferation.layout(tree_layout);
-	//	vis_mammosphere.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
-	//	vis_mammosphere.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
-	//	vis_mammosphere.layout(circle_layout);
 	};
 		
 	// export PDF buttons
@@ -241,21 +146,14 @@ window.onload=function() {
 		vis_proliferation.exportNetwork('pdf', 'export.php?type=pdf');
 	};
 	
-	/*
-	document.getElementById("mammo2pdf").onclick = function() {
-		vis_mammosphere.exportNetwork('pdf', 'export.php?type=pdf');
-	};
-	*/
-	
 	// and draw
 	vis_proliferation.draw(draw_options_proliferation);
-	//vis_mammosphere.draw(draw_options_mammosphere);
 };
 
 // JQUERY
 $(document).ready(function() {
 	$("#slider").slider({
-		value: 0, 
+		value: 5, 
 		max: 20,
 		min: 0,
 		step: 0.1,
