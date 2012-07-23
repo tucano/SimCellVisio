@@ -107,7 +107,7 @@ window.onload=function() {
 		
 		// INIT time point
 		vis_proliferation.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
-		vis_proliferation.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
+		vis_proliferation.filter("nodes", function(node) { return node.data.time <= $('#time').val(); },	false );
 		vis_proliferation.layout(tree_layout);	
 		
 		// add a listener for when nodes and edges are clicked
@@ -137,7 +137,7 @@ window.onload=function() {
 	// Filtering button
 	document.getElementById("filter").onclick = function(){
 		vis_proliferation.filter("edges", function(edge) { return edge.data.time <= $('#time').val(); },	false );
-		vis_proliferation.filter("nodes", function(node) { return node.data.mothertime <= $('#time').val(); },	false );
+		vis_proliferation.filter("nodes", function(node) { return node.data.time <= $('#time').val(); },	false );
 		vis_proliferation.layout(tree_layout);
 	};
 		
