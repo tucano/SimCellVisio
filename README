@@ -1,2 +1,12 @@
-A cytoscapeweb instance to explore mammosphere development
+A cytoscapeweb instance to explore mammosphere development:
+
+USAGE:
+
+* git clone git@github.com:tucano/SimCellVisio.git
+
+* copy your graphml files in the data directory
+
+* you can access the file in the data directory using this URL format: simcellvisio.html?network_file=FILE.graphml
+
+* enjoy!
 
