@@ -32,8 +32,9 @@ window.onload=function() {
 				discreteMapper: {
 					attrName: "stemness",
 					entries: [
-						{ attrValue: 0, value: "OCTAGON" },
-						{ attrValue: 1, value: "ELLIPSE" }
+						{ attrValue: 0, value: "ELLIPSE" },
+						{ attrValue: 1, value: "OCTAGON" },
+						{ attrValue: 2, value: "DIAMOND" }
 					]
 				}
 			},
@@ -41,8 +42,9 @@ window.onload=function() {
 				discreteMapper: {
 					attrName: "stemness",
 					entries: [
-						{ attrValue: 0, value: 1.5 },
-						{ attrValue: 1, value: 4.5 }
+						{ attrValue: 0, value: 4.5 },
+						{ attrValue: 1, value: 1.5 },
+						{ attrValue: 2, value: 2.5 }					
 					]
 				}
 			},
@@ -50,8 +52,9 @@ window.onload=function() {
 				discreteMapper: {
 					attrName: "stemness",
 					entries: [
-						{ attrValue: 0, value: "#ffffff" },
-						{ attrValue: 1,  value: "#000000"}
+						{ attrValue: 0, value:  "#000000"},
+						{ attrValue: 1,  value: "#ffffff"},
+						{ attrValue: 2,  value: "#f0f0f0"}
 					]
 				}
 			},
